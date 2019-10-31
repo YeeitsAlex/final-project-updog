@@ -6,12 +6,12 @@ import { HttpClient } from '@angular/common/http';
 })
 export class RunService {
 
-  serverURLi = "http://localhost:4000"
+  serverURLi = "http://localhost:4000" // this is the server the backend is running from 
   constructor(private http: HttpClient) {}
   showRun1()
   {
     var url = this.serverURLi + "/listFromRun1"
-    return this.http.get(url)
+    return this.http.get(url) // http get from localhost:4000/listFromRun1
   }
   postCelltoRun(b:Number, y:Number, e:String, o:String, s:Number)
   {
@@ -22,8 +22,8 @@ export class RunService {
       OutcomeTopic: o,
       Score: s
     }
-    console.log("adding person")
+    //console.log("adding person")
     var url = this.serverURLi + "/addCelltoRun1"
-    return this.http.post(url, p)
+    return this.http.post(url, p) // http post to localhost:4000/addCelltoRun1
   }
 }

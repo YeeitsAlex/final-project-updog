@@ -2,7 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const mongoose = require('mongoose')
-var Run = require('./models/run')
+var Run = require('./models/run') //Schema (format) for run collection
 
 const app = express()
 
@@ -10,7 +10,7 @@ app.use(cors())
 app.use(bodyParser.json())
 
 const connection = mongoose.connection
-app.listen(4000, () => console.log("server running on port 4000"))
+app.listen(4000, () => console.log("server running on port 4000")) //create server on localHost:4000
 
 const options = {
     useNewUrlParser: true,
@@ -28,33 +28,33 @@ const options = {
     // family: 4 // Use IPv4, skip trying IPv6
   };
 const uri = "mongodb+srv://nguyenalice66:rocksarehard6@cluster0-sl1km.mongodb.net/cs179?retryWrites=true&w=majority"
-mongoose.connect(uri, options)
+mongoose.connect(uri, options) //connect to mongodb cs179 with my crudentials and options above
 
-const R1 = mongoose.model('run1', Run)
+const R1 = mongoose.model('run1', Run) // make a model for run1 with mongoose model to easily access database
 
 app.post("/addCelltoRun1", (req, res) =>
 {
-    var r = new R1(req.body)
-    r.save()
+    //http get can be sent to localhost:4000/addCelltoRun1
+    var r = new R1(req.body) //declare new run model and get instance from request.body
+    r.save() //mongoose function for collection.insert
     .then(run => {
-        res.status(200).json({'run':'added successfully'})
+        res.status(200).json({'run':'added successfully'}) //return status 200 if insert went thru
     })
     .catch(err => {
-        res.status(400).send("failed to create new cell")
+        res.status(400).send("failed to create new cell") //return status 400 if insert failed
     })
 })
 app.get("/listFromRun1", (req, res) =>
 {
-    console.log("inside post")
-    R1.find((err, run)=>{
-        console.log("hi from backend")
+    //http post can be retrieved from localhost:4000/listFromRun1
+    R1.find((err, run)=>{ //mongoose function for find all rows in collection
         if(err)
         {
             console.log("could not proccess " + err)
         }
         else
         {
-            res.json(run)
+            res.json(run) //return json of the result to perosn who requested it
         }
     })
 })
