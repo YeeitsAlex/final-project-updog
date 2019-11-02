@@ -1,0 +1,40 @@
+span {
+    font-weight: bold;
+    background: lightgray;
+    padding: .2em .8em;
+    cursor: pointer;
+}
+
+.play-container {
+    padding: 3em;
+    border: 1px solid lightgray;
+    margin-bottom: 1em;
+
+    input {
+        padding: 1em;
+        margin-bottom: 2em;
+    }
+}
+.active {
+    background-color: yellow;
+    border: 4px solid black;
+    width: 50%;
+}
+.notactive {
+    background-color: gray;
+}
+
+.table-theme{
+    background-color: maroon;
+    border: 2px dotted black;
+    width: 30%;
+    margin-bottom: 1em;
+}
+
+.pic{
+    float: left;
+    width: 25%;
+    padding-left: 20px;
+    position: right;
+}
+
