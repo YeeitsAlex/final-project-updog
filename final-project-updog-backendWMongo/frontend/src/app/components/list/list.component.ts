@@ -13,13 +13,13 @@ import { Router } from '@angular/router'
 export class ListComponent implements OnInit {
 
   constructor(private runService: RunService, private router: Router) { }
-  r: Run[] // class has element r of type array of Runs
+  dataSource: Run[] // class has element r of type array of Runs
   displayColumns = ['block', 'year', 'event', 'outcome topic', 'score'] // needed for UI table..?
   showRun1(){
     this.runService.showRun1().subscribe((val: Run[]) => //send http request and results are subscribed into val
     {
-      this.r = val; //send the results the element r 
-      console.log(this.r)
+      this.dataSource = val; //send the results the element dataSource 
+      console.log(this.dataSource)
     })
   }
   AddCellToRun()

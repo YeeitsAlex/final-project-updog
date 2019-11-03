@@ -35,8 +35,8 @@ const R1 = mongoose.model('run1', Run) // make a model for run1 with mongoose mo
 app.post("/addCelltoRun1", (req, res) =>
 {
     //http get can be sent to localhost:4000/addCelltoRun1
-    var r = new R1(req.body) //declare new run model and get instance from request.body
-    r.save() //mongoose function for collection.insert
+    var dataSource = new R1(req.body) //declare new run model and get instance from request.body
+    dataSource.save() //mongoose function for collection.insert
     .then(run => {
         res.status(200).json({'run':'added successfully'}) //return status 200 if insert went thru
     })
