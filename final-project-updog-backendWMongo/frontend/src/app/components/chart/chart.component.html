@@ -1,0 +1,43 @@
+<div>
+        <button mat-raised-button (click)="addColumn()"> Add column </button>
+        <button mat-raised-button (click)="removeColumn()"> Remove column </button>
+        <button mat-raised-button (click)="shuffle()"> Shuffle </button>
+        <mat-form-field>
+                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="RUN">
+              </mat-form-field>
+        <table mat-table [dataSource]="DataSource1" matSort class="mat-elevation-z8">
+            <ng-container matColumnDef="block">
+                <th mat-header-cell mat-sort-header *matHeaderCellDef >block</th>
+                <td mat-cell *matCellDef="let element"> {{element.Block}} </td>
+            </ng-container>
+            <ng-container matColumnDef="year">
+                <th mat-header-cell mat-sort-header *matHeaderCellDef >year</th>
+                <td mat-cell *matCellDef="let element"> {{element.Year}} </td>
+            </ng-container>
+            <ng-container matColumnDef="event">
+                <th mat-header-cell mat-sort-header *matHeaderCellDef>event</th>
+                <td mat-cell *matCellDef="let element"> {{element.Event}} </td>
+            </ng-container>
+            <ng-container matColumnDef="outcome topic">
+                <th mat-header-cell mat-sort-header *matHeaderCellDef >outcome topic</th>
+                <td mat-cell *matCellDef="let element"> {{element.OutcomeTopic}} </td>
+            </ng-container>
+            <ng-container matColumnDef="score">
+                <th mat-header-cell mat-sort-header *matHeaderCellDef>score</th>
+                <td mat-cell *matCellDef="let element"> {{element.Score}} </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayColumns;"></tr>
+        
+        </table>
+        <mat-paginator [length]="length"
+                        [pageSize]="pageSize"
+                        [pageSizeOptions]="pageSizeOptions"
+                        (page)="pageEvent = $event">
+        </mat-paginator>
+</div>
+<div id="chartContainer" style="height: 370px; width: 100%;"></div>
+
+<div id="chartContainer1" style="height: 370px; width: 100%;"></div>
+
+<div id="chartContainer2" style="height: 370px; width: 100%;"></div>

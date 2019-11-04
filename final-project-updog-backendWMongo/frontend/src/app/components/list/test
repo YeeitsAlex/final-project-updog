@@ -1,3 +1,4 @@
+
 <div>
     <button mat-raised-button (click)="addColumn()"> Add column </button>
     <button mat-raised-button (click)="removeColumn()"> Remove column </button>

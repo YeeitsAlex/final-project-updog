@@ -4,7 +4,7 @@ import { Run } from '../../run.model'
 import { MatTableModule } from '@angular/material/table';
 import { Router } from '@angular/router'
 import {animate, state, style, transition, trigger} from '@angular/animations';
-
+import * as CanvasJS from '../../../assets/canvasjs.min.js';
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
@@ -46,5 +46,7 @@ export class ListComponent implements OnInit {
     this.showRun1()
     //this.AddCellToRun()
     //console.log(this.r)
+    
+    
   }
 }

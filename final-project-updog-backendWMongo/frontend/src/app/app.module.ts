@@ -2,14 +2,31 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes} from '@angular/router'
 import { HttpClientModule } from '@angular/common/http'
-import {MatTableModule} from '@angular/material/table'
-
+import { MatTableModule} from '@angular/material/table'
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ListComponent } from './components/list/list.component';
 import { CreateComponent } from './components/create/create.component';
 import { EditComponent } from './components/edit/edit.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ChartComponent } from './components/chart/chart.component';
+import * as CanvasJS from '../assets/canvasjs.min.js';
+import { ChartsModule } from 'ng2-charts';
+
+import { 
+  MatToolbarModule, 
+  MatButtonModule,
+  MatSidenavModule,
+  MatIconModule,
+  MatListModule ,
+  MatStepperModule,
+  MatInputModule,
+  MatFormFieldModule,
+  MatRippleModule,
+  MatPaginatorModule,
+  MatSortModule,
+} from '@angular/material';
 
 const routes: Routes = [
   {path: 'create', component: CreateComponent},
@@ -23,7 +40,9 @@ const routes: Routes = [
     AppComponent,
     ListComponent,
     CreateComponent,
-    EditComponent
+    EditComponent,
+    ChartComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -31,8 +50,20 @@ const routes: Routes = [
     HttpClientModule,
     MatTableModule,
     RouterModule.forRoot(routes),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatRippleModule,
+    MatPaginatorModule,
+    MatSortModule,
+    BrowserModule,
   ],
+  exports: [
+    MatTableModule,
+    MatSortModule
+  ],
+  
   providers: [], 
   bootstrap: [AppComponent]
 })
