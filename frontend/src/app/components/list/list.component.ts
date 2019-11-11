@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RunService } from '../../run.service'
-import { Run } from '../../run.model'
+import { Run, OutcomeList} from '../../run.model'
 import { MatTableModule } from '@angular/material/table';
 import { Router } from '@angular/router'
 
@@ -15,27 +15,46 @@ export class ListComponent implements OnInit {
   constructor(private runService: RunService, private router: Router) { }
   r: Run[] // class has element r of type array of Runs
   displayColumns = ['block', 'year', 'event', 'outcome topic', 'score'] // needed for UI table..?
-  showRun1(){
-    this.runService.showRun1().subscribe((val: Run[]) => //send http request and results are subscribed into val
+  showAllRuns(){
+    this.runService.showRuns().subscribe((val: Run[]) => //send http request and results are subscribed into val
     {
-      this.r = val; //send the results the element r 
-      console.log(this.r)
+      console.log("hello from console")
+      //this.r = val; //send the results the element r 
+      console.log(val)
     })
   }
-  AddCellToRun()
-  {
-    this.runService.postCelltoRun(3, 2, "event bob", "topic HAHA", .9) 
-    .subscribe 
-    ( // sent http post with necessary data to request
-      data =>{console.log("post successful")}, 
-      error => {console.log("ERROR ", error)} 
-    )
-    this.showRun1() // update Runs array once http post is done
+  showAllOutcomes(){
+    this.runService.showOutcomeTopics().subscribe((val: OutcomeList) => //send http request and results are subscribed into val
+    {
+      console.log("hello from console")
+      //this.r = val; //send the results the element r 
+      console.log(val)
+    })
   }
+  showAllScores(){
+    this.runService.showScores().subscribe((val: Run) => //send http request and results are subscribed into val
+    {
+      console.log("hello from console")
+      //this.r = val; //send the results the element r 
+      console.log(val)
+    })
+  }
+  // AddCellToRun()
+  // {
+  //   this.runService.postCelltoRun(3, 2, "event bob", "topic HAHA", .9) 
+  //   .subscribe 
+  //   ( // sent http post with necessary data to request
+  //     data =>{console.log("post successful")}, 
+  //     error => {console.log("ERROR ", error)} 
+  //   )
+  //   this.showRun1() // update Runs array once http post is done
+  // }
   ngOnInit() {
     //console.log("should print in list init")
-    this.showRun1()
+    //this.showAllRuns()
     //this.AddCellToRun()
+    //this.showAllOutcomes()
+    this.showAllScores()
     //console.log(this.r)
   }
 }
