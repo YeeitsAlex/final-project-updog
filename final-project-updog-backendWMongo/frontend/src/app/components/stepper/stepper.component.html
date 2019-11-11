@@ -1,0 +1,51 @@
+<button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+    {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
+  </button>
+  <mat-horizontal-stepper [linear]="isLinear" #stepper>
+
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Check year and block</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="Year, Blocl" formControlName="firstCtrl" required
+          placeholder="Pick one" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngFor="let option of options" [value]="option">
+                {{option}}
+              </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+          <button mat-button (click)="firstFormGroup.reset()">clear</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Fill out EventName</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="EventName" formControlName="secondCtrl" required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+          <button mat-button (click)="secondFormGroup.reset()">clear</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      You pick up <i>{{option}}</i> and {{EventName}}
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+  
+  
+  <!-- Copyright 2019 Google LLC. All Rights Reserved.
+      Use of this source code is governed by an MIT-style license that
+      can be found in the LICENSE file at http://angular.io/license -->
