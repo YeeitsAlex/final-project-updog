@@ -31,7 +31,7 @@ export class ListComponent implements OnInit {
       console.log(val)
     })
   }
-  showAllScores(){
+  showAllScores(){ //SHOW ALL SCORES AAAAAANNNNNND EVENT NAME
     this.runService.showScores().subscribe((val: Run) => //send http request and results are subscribed into val
     {
       console.log("hello from console")
