@@ -15,7 +15,7 @@ export class RunService {
   }
   showScores()
   {
-    var url = this.serverURLi + "/listScores"
+    var url = this.serverURLi + "/listScoresAndEventName"
     return this.http.get(url) // http get from localhost:4000/listFromRun1
   }
   showOutcomeTopics()
@@ -25,7 +25,7 @@ export class RunService {
   }
   showEventNames()
   {
-    var url = this.serverURLi + "/listScoresAndEventName"
+    var url = this.serverURLi + "/listEvents"
     return this.http.get(url) // http get from localhost:4000/listFromRun1
   }
 //   postCelltoRun(b:Number, y:Number, e:String, o:String, s:Number)
