@@ -39,6 +39,14 @@ export class ListComponent implements OnInit {
       console.log(val)
     })
   }
+  showAllEventNames(){
+    this.runService.showEventNames().subscribe((val: Run[]) => //send http request and results are subscribed into val
+    {
+      console.log("hello from console")
+      //this.r = val; //send the results the element r 
+      console.log(val)
+    })
+  }
   // AddCellToRun()
   // {
   //   this.runService.postCelltoRun(3, 2, "event bob", "topic HAHA", .9) 
@@ -54,7 +62,7 @@ export class ListComponent implements OnInit {
     //this.showAllRuns()
     //this.AddCellToRun()
     //this.showAllOutcomes()
-    this.showAllScores()
+    this.showAllEventNames()
     //console.log(this.r)
   }
 }

@@ -23,6 +23,11 @@ export class RunService {
     var url = this.serverURLi + "/listOutcomes"
     return this.http.get(url) // http get from localhost:4000/listFromRun1
   }
+  showEventNames()
+  {
+    var url = this.serverURLi + "/listEvents"
+    return this.http.get(url) // http get from localhost:4000/listFromRun1
+  }
 //   postCelltoRun(b:Number, y:Number, e:String, o:String, s:Number)
 //   {
 //     const p = {
