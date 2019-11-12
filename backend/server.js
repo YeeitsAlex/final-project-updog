@@ -142,9 +142,6 @@ app.get("/listRunWithSpecifics", (req, res) => {
 app.get("/listScorewithEventAndOutcome/:e/:o", (req, res) => {
     eName = req.params.e
     oName = req.params.o
-    console.log(eName)
-    console.log(oName)
-    console.log("hahhahahah")
     R1.findOne({
         'Eventlist.Event': eName
         // ,
