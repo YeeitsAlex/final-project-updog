@@ -17,7 +17,7 @@ let EventSchema = new Schema({
     {
         type: String
     },
-    EventOutcome:
+    Event_Outcome:
     {
         type: [OutcomeSchema]
     }

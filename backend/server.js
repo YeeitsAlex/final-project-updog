@@ -139,43 +139,48 @@ app.get("/listRunWithSpecifics", (req, res) => {
         }
     })
 })
-//code to add cell to run1 collection
-// prRun = new R1({Block:1, Year:2, Event: "askd", OutcomeTopic: "hahah", Score: .4}) 
-// prRun.save()
-//     .then(run=>{
-//         console.log("added")
-// })
-//     .catch(err=>{
-//         console.log("couldn't add")
-//     })
-
-//Code to print all runs in console
-// R1.find({}, (err, run)=>{
-//     console.log("hi from backend")
-//     if(err)
-//     {
-//         console.log("could not proccess " + err)
-//     }
-//     else
-//     {
-//         console.log(run)
-//     }
-// })
-
-// R1.findOne({Year: 0, Block: 4})
-//     .select("Year Block Eventlist.Event Eventlist.Event_Outcome.OutcomeTopic Eventlist.Event_Outcome.Score")
+// app.get("/listScorewithEventAndOutcome", (req, res) => {
+//     eName = req.body.eventName
+//     oName = req.body.outcomeName
+//     R1.findOne({Eventlist: {Event: ename}, Eventlist: {Event_Outcome: {OutcomeTopic: oName}}})
+//     .select("Eventlist.Event_Outcome.Score")
 //     .lean().exec(function(err, run) {
-//     if(err)
-//     {
-//         console.log("could not proccess " + err)
-//     }
-//     else
-//     {
-//         fs.writeFile('shiyao.txt', util.inspect(run, false, null), (err)=>
+//         if(err)
 //         {
-//             if (err) throw err;
-//             console.log("saved for shiyao")
-//         })
-//         //console.log(util.inspect(run, false, null))
-//     }
+//             console.log("could not proccess " + err)
+//         }
+//         else
+//         {
+//             res.json(run) //return json of the result to perosn who requested it
+//         }
 //     })
+// })
+
+R1.findOne({
+    // 'Eventlist.Event': '401-OMS-6223-SP2'
+    // ,
+    'Eventlist.Event_Outcome.OutcomeTopic': "GP Biochemistry and molecular biology"
+    // {
+    //     // "$elemMatch": 
+    //     // {"OutcomeTopic": "GP Biochemistry and molecular biology"}
+    //     "OutcomeTopic": "GP Biochemistry and molecular biology"
+    // }
+}, 
+//{"Eventlist.Event.$": 1}, 
+{"Eventlist.Event_Outcome.OutcomeTopic.$": 1})
+//.select("Block Year Eventlist.Event_Outcome.OutcomeTopic Eventlist.Event Eventlist.Event_Outcome.Score")
+.lean().exec(function(err, run) {
+    if(err)
+    {
+        console.log("could not proccess " + err)
+    }
+    else
+    {
+        fs.writeFile('shiyao.txt', util.inspect(run, false, null), (err)=>
+        {
+            if (err) throw err;
+            console.log("saved for shiyao")
+        })
+        //console.log(util.inspect(run, false, null))
+    }
+})

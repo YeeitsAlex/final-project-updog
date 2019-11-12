@@ -1,0 +1,101 @@
+{ _id: 5dc3778a7ed04b7b26163585,
+  Eventlist:
+   [ { Event: '401-OMS-6223-SP2',
+       Event_Outcome:
+        [ { OutcomeTopic: 'GP Biochemistry and molecular biology',
+            Score: 0.02 },
+          { OutcomeTopic: 'GP Biology of Cells', Score: 0.08 },
+          { OutcomeTopic: 'GP Human development and genetics',
+            Score: 0.08 },
+          { OutcomeTopic: 'GP Biology of tissue response to disease',
+            Score: 0.11 },
+          { OutcomeTopic:
+             'GP Pharmacodynamic and pharmacokinetic processes: general principles',
+            Score: 0.05 },
+          { OutcomeTopic: 'GP Microbial biology', Score: 0.09 },
+          { OutcomeTopic:
+             'GP Normal age-related findings and care of the well patient',
+            Score: 0.22 },
+          { OutcomeTopic: 'IS Normal processes', Score: 0.03 },
+          { OutcomeTopic:
+             'IS Abnormal Processes: Health and Health Maintenance, Screening, Diagnosis, Management, Risks, Prognosis',
+            Score: 0.02 },
+          { OutcomeTopic: 'BLS Normal Processes', Score: 0.07 },
+          { OutcomeTopic:
+             'BLS Abnormal Processes: Health and Health Maintenance, Screening, Diagnosis, Management, Risks, Prognosis',
+            Score: 0.04 },
+          { OutcomeTopic: 'BH Normal Processes', Score: 0.13 },
+          { OutcomeTopic:
+             'BH Abnormal Processes: Health and Health Maintenance, Screening, Diagnosis, Management, Risks, Prognosis',
+            Score: 0.05 },
+          { OutcomeTopic: 'NS Normal Processes', Score: 0.07 },
+          { OutcomeTopic:
+             'NS Abnormal Processes: Health and Health Maintenance, Screening, Diagnosis, Management, Risks, Prognosis',
+            Score: 0.05 },
+          { OutcomeTopic: 'ST Normal Processes', Score: 0.1 },
+          { OutcomeTopic:
+             'ST Abnormal Processes: Health and Health Maintenance, Screening, Diagnosis, Management, Risks, Prognosis',
+            Score: 0.06 },
+          { OutcomeTopic: 'MS Normal Processes', Score: 0.08 },
+          { OutcomeTopic:
+             'MS Abnormal Processes: Health and Health Maintenance, Screening, Diagnosis, Management, Risks, Prognosis',
+            Score: 0.06 },
+          { OutcomeTopic: 'CS Normal Processes', Score: 0.08 },
+          { OutcomeTopic:
+             'CS Abnormal Processes: Health and Health Maintenance, Screening, Diagnosis, Management, Risks, Prognosis',
+            Score: 0.05 },
+          { OutcomeTopic: 'RS Normal Processes', Score: 0.09 },
+          { OutcomeTopic:
+             'RS Abnormal Processes: Health and Health Maintenance, Screening, Diagnosis, Management, Risks, Prognosis',
+            Score: 0.03 },
+          { OutcomeTopic: 'GS Normal Processes', Score: 0.09 },
+          { OutcomeTopic:
+             'GS Abnormal Processes: Health and Health Maintenance, Screening, Diagnosis, Management, Risks, Prognosis',
+            Score: 0.06 },
+          { OutcomeTopic: 'RUS Normal Processes', Score: 0.06 },
+          { OutcomeTopic:
+             'RUS Abnormal Processes: Health and Health Maintenance, Screening, Diagnosis, Management, Risks, Prognosis',
+            Score: 0.05 },
+          { OutcomeTopic: 'PCP Normal Processes', Score: 0.07 },
+          { OutcomeTopic:
+             'PCP Abnormal Processes: Health and Health Maintenance, Screening, Diagnosis, Management, Risks, Prognosis',
+            Score: 0.08 },
+          { OutcomeTopic: 'FRS Normal Processes', Score: 0.1 },
+          { OutcomeTopic:
+             'FRS Abnormal Processes: Health and Health Maintenance, Screening, Diagnosis, Management, Risks, Prognosis',
+            Score: 0.08 },
+          { OutcomeTopic: 'MRS Normal Processes', Score: 0.08 },
+          { OutcomeTopic:
+             'MRS Abnormal Processes: Health and Health Maintenance, Screening, Diagnosis, Management, Risks, Prognosis',
+            Score: 0.08 },
+          { OutcomeTopic: 'ES Normal Processes', Score: 0.05 },
+          { OutcomeTopic:
+             'ES Abnormal Processes: Health and Health Maintenance, Screening, Diagnosis, Management, Risks, Prognosis',
+            Score: 0.06 },
+          { OutcomeTopic: 'MPD Normal Processes', Score: 0.07 },
+          { OutcomeTopic:
+             'MPD Abnormal Processes: Health and Health Maintenance, Screening, Diagnosis, Management, Risks, Prognosis',
+            Score: 0.09 },
+          { OutcomeTopic: 'BEP Epidemiology / population health',
+            Score: 0.27 },
+          { OutcomeTopic:
+             'BEP Study design, types and selection of studies (includes dependent/independent variables)',
+            Score: 0.13 },
+          { OutcomeTopic: 'BEP Measures of association', Score: 0.1 },
+          { OutcomeTopic: 'BEP Principles of testing and screening',
+            Score: 0.1 },
+          { OutcomeTopic: 'BEP Study interpretation, drawing conclusions from data',
+            Score: 0.15 },
+          { OutcomeTopic:
+             'BEP Clinical decision making, interpretation and use of evidence-based data and recommendations',
+            Score: 0.21 },
+          { OutcomeTopic: 'BEP Research ethics', Score: 0.27 },
+          { OutcomeTopic:
+             'SS Communication and interpersonal skills, including health literacy and numeracy, cultural competence',
+            Score: 0.24 },
+          { OutcomeTopic:
+             'SS Medical ethics and jurisprudence, include issues related to death and dying and palliative care',
+            Score: 0.18 },
+          { OutcomeTopic:
+             'SS Systems-based practice (including health systems, public health, community, schools) and patient safety (including basic concepts and terminology)',
+            Score: 0.31 } ] } ] }
