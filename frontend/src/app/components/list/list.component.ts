@@ -47,6 +47,14 @@ export class ListComponent implements OnInit {
       console.log(val)
     })
   }
+  showScoresWNames(event, outcome){
+    this.runService.showScoreWithNames(event, outcome).subscribe((val: Number) => //send http request and results are subscribed into val
+    {
+      console.log("hello from console")
+      //this.r = val; //send the results the element r 
+      console.log(val)
+    })
+  }
   // AddCellToRun()
   // {
   //   this.runService.postCelltoRun(3, 2, "event bob", "topic HAHA", .9) 
@@ -62,7 +70,8 @@ export class ListComponent implements OnInit {
     //this.showAllRuns()
     //this.AddCellToRun()
     //this.showAllOutcomes()
-    this.showAllEventNames()
+    //this.showAllEventNames()
     //console.log(this.r)
+    this.showScoresWNames("401-OMS-6223-SP2", "GP Human development and genetics")
   }
 }

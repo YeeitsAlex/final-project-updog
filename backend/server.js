@@ -139,48 +139,102 @@ app.get("/listRunWithSpecifics", (req, res) => {
         }
     })
 })
-// app.get("/listScorewithEventAndOutcome", (req, res) => {
-//     eName = req.body.eventName
-//     oName = req.body.outcomeName
-//     R1.findOne({Eventlist: {Event: ename}, Eventlist: {Event_Outcome: {OutcomeTopic: oName}}})
-//     .select("Eventlist.Event_Outcome.Score")
-//     .lean().exec(function(err, run) {
-//         if(err)
-//         {
-//             console.log("could not proccess " + err)
-//         }
-//         else
-//         {
-//             res.json(run) //return json of the result to perosn who requested it
-//         }
-//     })
-// })
-
-R1.findOne({
-    // 'Eventlist.Event': '401-OMS-6223-SP2'
-    // ,
-    'Eventlist.Event_Outcome.OutcomeTopic': "GP Biochemistry and molecular biology"
-    // {
-    //     // "$elemMatch": 
-    //     // {"OutcomeTopic": "GP Biochemistry and molecular biology"}
-    //     "OutcomeTopic": "GP Biochemistry and molecular biology"
-    // }
-}, 
-//{"Eventlist.Event.$": 1}, 
-{"Eventlist.Event_Outcome.OutcomeTopic.$": 1})
-//.select("Block Year Eventlist.Event_Outcome.OutcomeTopic Eventlist.Event Eventlist.Event_Outcome.Score")
-.lean().exec(function(err, run) {
-    if(err)
-    {
-        console.log("could not proccess " + err)
-    }
-    else
-    {
-        fs.writeFile('shiyao.txt', util.inspect(run, false, null), (err)=>
+app.get("/listScorewithEventAndOutcome/:e/:o", (req, res) => {
+    eName = req.params.e
+    oName = req.params.o
+    console.log(eName)
+    console.log(oName)
+    console.log("hahhahahah")
+    R1.findOne({
+        'Eventlist.Event': eName
+        // ,
+        // 'Eventlist.Event_Outcome.OutcomeTopic': "GP Biochemistry and molecular biology"
+        // {
+        //     // "$elemMatch": 
+        //     // {"OutcomeTopic": "GP Biochemistry and molecular biology"}
+        //     "OutcomeTopic": "GP Biochemistry and molecular biology"
+        // }
+    }, 
+    {"Eventlist.Event.$": 1}, 
+    // {"Eventlist": {$slice: 1}}
+    //{"Eventlist.Event_Outcome": {$slice: 1}} 
+    // SLICE FURTHER LATER BECAUSE NOT WORKING RIGHT NOW!!! 
+    // CHEAT METHOD IS SEARCHING THROUGH RETURN VALUE AND RETURNING THAT INSTEAD
+    )
+    //.select("Block Year Eventlist.Event_Outcome.OutcomeTopic Eventlist.Event Eventlist.Event_Outcome.Score")
+    .lean().exec(function(err, run) {
+        if(err)
         {
-            if (err) throw err;
-            console.log("saved for shiyao")
-        })
-        //console.log(util.inspect(run, false, null))
-    }
+            console.log("could not proccess " + err)
+        }
+        else
+        {
+            // fs.writeFile('shiyao.txt', util.inspect(run, false, null), (err)=>
+            // {
+            //     if (err) throw err;
+            //     console.log("saved for shiyao")
+            // })
+            pValue = run.Eventlist[0].Event_Outcome
+            notfound = true
+            size = pValue.length
+            i = 0
+            while(notfound && i < size)
+            {
+                if(pValue[i].OutcomeTopic == oName)
+                {
+                    holder = pValue[i]
+                    notfound = false
+                }
+                i++
+            }
+            res.json(holder)
+            //res.send(holder[])
+        }
+    })
 })
+
+// R1.findOne({
+//     'Eventlist.Event': '401001 Overview_Pituitary'
+//     // ,
+//     // 'Eventlist.Event_Outcome.OutcomeTopic': "GP Biochemistry and molecular biology"
+//     // {
+//     //     // "$elemMatch": 
+//     //     // {"OutcomeTopic": "GP Biochemistry and molecular biology"}
+//     //     "OutcomeTopic": "GP Biochemistry and molecular biology"
+//     // }
+// }, 
+// {"Eventlist.Event.$": 1}, 
+// // {"Eventlist": {$slice: 1}}
+// //{"Eventlist.Event_Outcome": {$slice: 1}} 
+// // SLICE FURTHER LATER BECAUSE NOT WORKING RIGHT NOW!!! 
+// // CHEAT METHOD IS SEARCHING THROUGH RETURN VALUE AND RETURNING THAT INSTEAD
+// )
+// //.select("Block Year Eventlist.Event_Outcome.OutcomeTopic Eventlist.Event Eventlist.Event_Outcome.Score")
+// .lean().exec(function(err, run) {
+//     if(err)
+//     {
+//         console.log("could not proccess " + err)
+//     }
+//     else
+//     {
+//         // fs.writeFile('shiyao.txt', util.inspect(run, false, null), (err)=>
+//         // {
+//         //     if (err) throw err;
+//         //     console.log("saved for shiyao")
+//         // })
+//         pValue = run.Eventlist[0].Event_Outcome
+//         notfound = true
+//         size = pValue.length
+//         i = 0
+//         while(notfound && i < size)
+//         {
+//             if(pValue[i].OutcomeTopic == "GP Biochemistry and molecular biology")
+//             {
+//                 holder = pValue[i]
+//                 notfound = false
+//             }
+//             i++
+//         }
+//         console.log(holder)
+//     }
+// })
