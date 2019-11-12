@@ -11,7 +11,7 @@ interface Outcome{
 } //interace is needed to accept http requests in subscribe() function
 interface Events{
   Event: String,
-  EventOutcome: Array<Outcome>
+  Event_Outcome: Array<Outcome>
 } //interace is needed to accept http requests in subscribe() function
 export interface Run{
   Year: Number,

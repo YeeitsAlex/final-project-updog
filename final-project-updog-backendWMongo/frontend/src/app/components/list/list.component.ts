@@ -22,6 +22,7 @@ export class ListComponent implements OnInit {
   DataSource1
   OutcomeList
   EventNameList
+  ScoreList
   constructor(private runService: RunService, private router: Router) { }
   r: Run[] // class has element r of type array of Runs
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -60,12 +61,35 @@ export class ListComponent implements OnInit {
     })
   }
   showAllScores(){
-    this.runService.showScores().subscribe((val: Run) => //send http request and results are subscribed into val
+    this.runService.showScores().subscribe((val: Run[]) => //send http request and results are subscribed into val
     {
+      
       console.log("hello from showAllScores")
       // console.log(this.OutcomeList)
       //this.r = val; //send the results the element r 
-      console.log(val)
+      // console.log(val)
+      // console.log(val[0].Eventlist[0]) //for each row 
+      var input_list_score = []
+      for(var i = 0 ; i < val.length; i++){ // for same block and year
+        for(var j = 0; j < val[i].Eventlist.length; j++){
+          var inputs =  val[i].Eventlist[j]
+          input_list_score.push(inputs) 
+        }
+      }
+      this.ScoreList = input_list_score
+      var final_row_Event_cell_list = {}
+      for(var row = 0; row < input_list_score.length; row++){
+        var insidelist = []
+        for (var index =0; index < input_list_score[row].Event_Outcome.length;index++ ){
+          // console.log(this.ScoreList[row].Event_Outcome[index].Score)
+          insidelist.push((input_list_score[row].Event_Outcome[index].Score))
+        }
+        // console.log(insidelist)
+        final_row_Event_cell_list[row] = [input_list_score[row].Event,insidelist]
+      }
+      this.ScoreList = final_row_Event_cell_list
+      console.log(this.ScoreList)
+      
     })
   }
   showAllEventNames(){
@@ -73,6 +97,7 @@ export class ListComponent implements OnInit {
     {
       // console.log("hello from showAllEventNames")
       //this.r = val; //send the results the element r 
+      
       var input_list_EventNames = []
       for (var i = 0; i< val.length;i++){
         // console.log(val[i])
@@ -102,13 +127,15 @@ export class ListComponent implements OnInit {
     //console.log("should print in list init")
     //this.showAllRuns()
     //this.AddCellToRun()
-    this.showAllOutcomes()
-    // console.log("hello from console")
-    // 
-    //this.showAllScores()
-    this.showAllEventNames()
-    console.log(this.OutcomeList)
-    console.log(this.EventNameList)
+    // this.showAllOutcomes()
+    // // console.log("hello from console")
+    // // 
+    // //this.showAllScores()
+    // this.showAllEventNames()
+    // console.log(this.OutcomeList)
+    // console.log(this.EventNameList)
+    this.showAllScores()
+    console.log(this.ScoreList)
     //console.log(this.r)
   }
 }

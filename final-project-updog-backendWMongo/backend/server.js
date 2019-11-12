@@ -64,10 +64,10 @@ app.get("/listFromRun", (req, res) =>
         }
       })
 })
-app.get("/listScores", (req, res) =>
+app.get("/listScoresAndEventName", (req, res) =>
 {
     //http post can be retrieved from localhost:4000/listFromRun1
-    R1.find({}, "Eventlist.Event_Outcome.Score")
+    R1.find({}).select("Eventlist.Event Eventlist.Event_Outcome.Score")
     .lean().exec(function(err, run) {
         if(err)
         {
@@ -82,7 +82,7 @@ app.get("/listScores", (req, res) =>
 app.get("/listOutcomes", (req, res) =>
 {
     //http post can be retrieved from localhost:4000/listFromRun1
-    R1.findOne({"Year": 0}, {"Eventlist": {$slice: 1}})
+    R1.findOne({Year: 0}, {"Eventlist": {$slice: 1}})
     .select("Eventlist.Event_Outcome.OutcomeTopic").lean().exec(function(err, run) {
         if(err)
         {
@@ -98,6 +98,36 @@ app.get("/listEvents", (req, res) =>
 {
     //http post can be retrieved from localhost:4000/listFromRun1
     R1.find().select("Eventlist.Event")
+    .lean().exec(function(err, run) {
+        if(err)
+        {
+            console.log("could not proccess " + err)
+        }
+        else
+        {
+            res.json(run) //return json of the result to perosn who requested it
+        }
+    })
+})
+app.get("/listEventswithSpecifics", (req, res) => {
+    b = req.body.block
+    y = req.body.year
+    R1.findOne({Block: b, Year: y}).select("Eventlist.Event")
+    .lean().exec(function(err, run) {
+        if(err)
+        {
+            console.log("could not proccess " + err)
+        }
+        else
+        {
+            res.json(run) //return json of the result to perosn who requested it
+        }
+    })
+})
+app.get("/listRunWithSpecifics", (req, res) => {
+    b = req.body.block
+    y = req.body.year
+    R1.findOne({Block: b, Year: y}).select("")
     .lean().exec(function(err, run) {
         if(err)
         {
@@ -132,8 +162,9 @@ app.get("/listEvents", (req, res) =>
 //     }
 // })
 
-// R1.find().select("Eventlist.Event")
-// .lean().exec(function(err, run) {
+// R1.findOne({Year: 0, Block: 4})
+//     .select("Year Block Eventlist.Event Eventlist.Event_Outcome.OutcomeTopic Eventlist.Event_Outcome.Score")
+//     .lean().exec(function(err, run) {
 //     if(err)
 //     {
 //         console.log("could not proccess " + err)
