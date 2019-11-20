@@ -69,7 +69,7 @@ export class HeatmapComponent{
     {
       console.log("hello from console")
       //this.r = val; //send the results the element r 
-      console.log(val)
+      //console.log(val)
     })
   }
   showAllOutcomes(){
@@ -195,7 +195,7 @@ export class HeatmapComponent{
     {
       
       // console.log("hello from showAllScores")
-      // console.log(this.OutcomeList)
+      console.log(this.OutcomeList)
       //this.r = val; //send the results the element r 
       // console.log(val)
       // console.log(val[0].Eventlist[0]) //for each row 
