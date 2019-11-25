@@ -10,6 +10,9 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 
 import { MatSort, MatSortable, MatPaginator, MatTableDataSource } from '@angular/material';
 import { chart } from 'highcharts/highcharts.src';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
+import {FormControl} from '@angular/forms';
 // import { eventNames } from 'cluster';
 // import { DataSource } from '@angular/cdk/table';
 // import { ChartsModule } from 'ng2-charts';
@@ -275,7 +278,18 @@ export class HeatmapComponent implements OnInit {
 
   // constructor() { }
 
+
+  //New code starts here
+  myControl = new FormControl();
+  selections
+  // selections: string[];// = this.EventNameList;
+  filteredOptions: Observable<string[]>;
+
+
+  ///Ends here
+
   ngOnInit() {
+
    this.runName = this.runService.runName
    this.runService.showOutcomeTopics(this.runName).subscribe((val: OutcomeList) => //send http request and results are subscribed into val
     {
@@ -330,6 +344,7 @@ export class HeatmapComponent implements OnInit {
       }
       this.ScoreList = input_list_score
       var final_row_Event_cell_list = {}
+      var newlist = []
       for(var row = 0; row < input_list_score.length; row++){
         var insidelist = []
         for (var index =0; index < input_list_score[row].Event_Outcome.length;index++ ){
@@ -338,7 +353,10 @@ export class HeatmapComponent implements OnInit {
         }
         // console.log(insidelist)
         final_row_Event_cell_list[row] = [input_list_score[row].Event,insidelist]
+        newlist[row] = {id : row, name : final_row_Event_cell_list[row][0]} // final_row_Event_cell_list[row][0] is event name 
+        // console.log(final_row_Event_cell_list[row][0])
       }
+      this.selections = newlist
       this.ScoreList = final_row_Event_cell_list
     //   console.log(this.ScoreList)
       this.alllist = this.ScoreList
@@ -346,6 +364,8 @@ export class HeatmapComponent implements OnInit {
       
       this.options.xAxis.categories = this.OutcomeList;
       this.options.yAxis.categories = this.EventNameList;
+      // this.selections = this.EventNameList;
+      //console.log(this.selections);
     //   this.chart = new Chart(options: this.options);
     //   this.chart = Highcharts.chart('container', this.options);
       this.chart = new Chart(this.options);
@@ -353,7 +373,22 @@ export class HeatmapComponent implements OnInit {
     })
       
     })
-  }
+        //new code here
+        this.filteredOptions = this.myControl.valueChanges
+        .pipe(
+          startWith(''),
+          map(value => this._filter(value))
+        );
   
+      //ends here
+  }
+
+  //Added function (New code)
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.selections.filter(option => option.toLowerCase().includes(filterValue));
+  }
+  //End new code
 
 }

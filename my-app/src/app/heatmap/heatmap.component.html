@@ -1,17 +1,38 @@
 <div [chart] ="chart"></div>
 
+<!-- 
+<div class="newC">
+        <mat-form-field class = "text" appearance = "outline">
+        <input type="text" placeholder="Search for an event" matInput formControlName="links" [matAutocomplete]="auto" />
+        <mat-autocomplete #auto="matAutocomplete">
+            <mat-selection-list #selectionList (selectionChange)="onSelectionChange($event)"  [disableRipple]="true">
+                    <mat-list-option checkboxPosition = "before" *ngFor="let option of selections | async" [value]="option.id">
+                            {{option.name}}
+                    </mat-list-option>
+            </mat-selection-list>
+    
+         <mat-option [style.display]="'none'"></mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+</div> -->
 
-<div class="container" padding = "10">
-<div class="userInput">
-        <mat-form-field appearance = "outline">
-            <input matInput placeholder="Input">
-            <mat-hint>Input 'X' number of events</mat-hint>
+<div class="newC" >
+        <mat-form-field>
+            <mat-label>Select a Run</mat-label>
+            <mat-select disableRipple  [(ngModel)]="runchoiceNamme" > 
+                    <mat-option *ngFor="let option of selections "  [value]="option.name">{{option.name}}</mat-option>
+            </mat-select>
         </mat-form-field>
 </div>
-            
+<div class="newC">
+        <div class="userInput">
+            <button mat-raised-button class = "returnbtnn" color = "primary" routerLink="/bloop">Return to previous page</button>
+        </div>
+        <button mat-raised-button class = "reportbtnn" color = "primary" routerLink="/">Generate Report</button>
+</div>
 
 
-<div class="exContain">
+<!-- <div class="exContain">
     <mat-accordion>
         <mat-expansion-panel>
             <mat-expansion-panel-header>
@@ -27,10 +48,38 @@
                 </mat-selection-list>
         </mat-expansion-panel>
     </mat-accordion>
-</div>
+</div> -->
 <!-- </div> -->
 
-<div class="newC">
-    <button mat-raised-button class = "returnbtnn" color = "primary" routerLink="/bloop">Return to previous page</button>
-    <button mat-raised-button class = "reportbtnn" color = "primary" routerLink="/">(Will be report or something later)</button>
-</div>
+
+<!-- <form class="example-form">
+        <mat-form-field class="example-full-width">
+          <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-list-option *ngFor="let option of filteredOptions | async" [value]="option">
+              {{option}}
+            </mat-list-option>
+            <mat-option [style.display]="'none'"></mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </form> -->
+
+<!-- <mat-form-field appearance = "outline">
+    <input type="text" placeholder="Text" matInput formControlName="links" [matAutocomplete]="auto" />
+    <mat-autocomplete #auto="matAutocomplete">
+        <mat-selection-list #selectionList (selectionChange)="onSelectionChange($event)"  [disableRipple]="true">
+                <mat-list-option checkboxPosition="before" value="bananas">Outcome 1</mat-list-option>
+                <mat-list-option checkboxPosition="before" value="oranges">Outcome 2 </mat-list-option>
+                <mat-list-option checkboxPosition="before" value="apples">Outcome 3</mat-list-option>
+                <mat-list-option checkboxPosition="before" value="strawberries">Outcome 4 </mat-list-option>
+        </mat-selection-list>
+
+        <mat-option [style.display]="'none'"></mat-option>
+    </mat-autocomplete>
+</mat-form-field> -->
+
+
+
+
+
+
