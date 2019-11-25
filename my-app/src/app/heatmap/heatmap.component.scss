@@ -10,6 +10,20 @@
     flex: 1 1 auto;
   }
 
+.exContain{
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    position: center;
+}
+
+.userInput{
+    width: 35%;
+    padding: 10;
+}
+
+
+
 //=== Drawing effect
 
 // @mixin btn-border-drawing($color: #ccc, $hover: black, $width: 2px, $vertical: top, $horizontal: left, $duration: 0.25s) {
@@ -119,9 +133,48 @@
 }
 
 
+.returnbtnn{
+    margin: 1em;
+    //display:block;
+    //background-color: maroon;
+    //color: black;
+    font: 700 1.2rem 'Roboto Slab', sans-serif;
+    padding: 1em;
+    letter-spacing: 0.05rem;
+    //border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    line-height: 1.5;
+    display:inline-block;
+    background-color: lightgreen;
+}
+
+.reportbtnn{
+    margin: 1em;
+    //display:block;
+    //background-color: maroon;
+    // color: black;
+    font: 700 1.2rem 'Roboto Slab', sans-serif;
+    padding: 1em;
+    letter-spacing: 0.05rem;
+    //border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    line-height: 1.5;
+    display:inline-block;
+    background-color: purple;
+}
+
+
+.newC{
+    text-align: center;
+}
+
 .map_btnn{
     margin: auto;
-    display:block;
+    //display:block;
     //background-color: maroon;
     color: black;
     font: 700 1.2rem 'Roboto Slab', sans-serif;
@@ -132,6 +185,7 @@
     justify-content: center;
     cursor: pointer;
     line-height: 1.5;
+    display:inline-block;
 }
 
 .newbtn{

@@ -23,6 +23,8 @@ import * as more from 'highcharts/highcharts-more.src';
 import * as exporting from 'highcharts/modules/exporting.src';
 import * as hizzlemap from 'highcharts/modules/heatmap.src';
 import { LoginComponent } from './login/login.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 // import * as CanvasJS from '../assets/canvasjs.min.js';
 // import { ChartsModule } from 'ng2-charts';
@@ -37,6 +39,7 @@ import {
   MatPaginatorModule,
   MatSortModule,
   MatAutocompleteModule
+
 } from '@angular/material';
 import { DisplayChartComponent } from './display-chart/display-chart.component';
 
@@ -93,7 +96,11 @@ import { DisplayChartComponent } from './display-chart/display-chart.component';
     MatStepperModule,
     FormsModule,
     ReactiveFormsModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatExpansionModule,
+    MatListModule,
+    MatGridListModule,
+    MatButtonModule
     
   ],
   providers: [

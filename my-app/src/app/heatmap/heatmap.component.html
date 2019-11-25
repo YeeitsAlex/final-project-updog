@@ -1,6 +1,36 @@
 <div [chart] ="chart"></div>
 
 
-<div class="wrapper">
-    <button mat-raised-button class = "map_btnn" routerLink="/bloop">Return to previous page</button>
+<div class="container" padding = "10">
+<div class="userInput">
+        <mat-form-field appearance = "outline">
+            <input matInput placeholder="Input">
+            <mat-hint>Input 'X' number of events</mat-hint>
+        </mat-form-field>
+</div>
+            
+
+
+<div class="exContain">
+    <mat-accordion>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Select One or More Outcomes
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+                <mat-selection-list #Outcomes>
+                    <mat-list-option checkboxPosition="before" value="bananas">Outcome 1</mat-list-option>
+                    <mat-list-option checkboxPosition="before" value="oranges">Outcome 2 </mat-list-option>
+                    <mat-list-option checkboxPosition="before" value="apples">Outcome 3</mat-list-option>
+                    <mat-list-option checkboxPosition="before" value="strawberries">Outcome 4 </mat-list-option>
+                </mat-selection-list>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>
+<!-- </div> -->
+
+<div class="newC">
+    <button mat-raised-button class = "returnbtnn" color = "primary" routerLink="/bloop">Return to previous page</button>
+    <button mat-raised-button class = "reportbtnn" color = "primary" routerLink="/">(Will be report or something later)</button>
 </div>
