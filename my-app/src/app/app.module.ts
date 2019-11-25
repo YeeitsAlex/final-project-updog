@@ -27,6 +27,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatGridListModule} from '@angular/material/grid-list';
 
 
+
 // import * as CanvasJS from '../assets/canvasjs.min.js';
 // import { ChartsModule } from 'ng2-charts';
 import { 
@@ -39,7 +40,8 @@ import {
   MatRippleModule,
   MatPaginatorModule,
   MatSortModule,
-  MatAutocompleteModule
+  MatAutocompleteModule,
+  MatCheckboxModule
 
 } from '@angular/material';
 import { DisplayChartComponent } from './display-chart/display-chart.component';
@@ -101,7 +103,8 @@ import { DisplayChartComponent } from './display-chart/display-chart.component';
     MatExpansionModule,
     MatListModule,
     MatGridListModule,
-    MatButtonModule
+    MatButtonModule,
+    MatCheckboxModule
     
   ],
   providers: [

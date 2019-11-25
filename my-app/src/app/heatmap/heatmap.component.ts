@@ -13,12 +13,38 @@ import { chart } from 'highcharts/highcharts.src';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import {FormControl} from '@angular/forms';
+import {SelectionModel} from '@angular/cdk/collections';
+
+
 // import { eventNames } from 'cluster';
 // import { DataSource } from '@angular/cdk/table';
 // import { ChartsModule } from 'ng2-charts';
 // import * as CanvasJS from '../../../assets/canvasjs.min.js';
 // import { ChartDataSets, ChartOptions } from 'chart.js';
 // import { Color, BaseChartDirective, Label } from 'ng2-charts';
+
+export interface PeriodicElement {
+  name: string;
+  position: number;
+  weight: number;
+  symbol: string;
+}
+
+const ELEMENT_DATA: PeriodicElement[] = [
+  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
+  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
+  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
+  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
+  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
+  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
+  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
+  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
+  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
+  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
+];
+
+
+
 @Component({
   selector: 'app-heatmap',
   templateUrl: './heatmap.component.html',
@@ -40,7 +66,7 @@ export class HeatmapComponent implements OnInit {
             height: 1700,
             width: 1200,
             margin: [80, 5, 400, 230],
-            spacing: [10, 10, 100, 10]
+            spacing: [10, 10, 100, 10],
           },
           title: {
               text: 'Highcharts heat map',
@@ -279,14 +305,40 @@ export class HeatmapComponent implements OnInit {
   // constructor() { }
 
 
-  //New code starts here
-  myControl = new FormControl();
-  selections
-  // selections: string[];// = this.EventNameList;
-  filteredOptions: Observable<string[]>;
 
+  /** Whether the number of selected elements matches the total number of rows. */
 
-  ///Ends here
+  //New Code
+  displayedColumns: string[] = ['select', 'position', 'name', 'weight', 'symbol'];
+  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  selection = new SelectionModel<PeriodicElement>(true, []);
+
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  masterToggle() {
+    this.isAllSelected() ?
+        this.selection.clear() :
+        this.dataSource.data.forEach(row => this.selection.select(row));
+  }
+
+  /** The label for the checkbox on the passed row */
+  checkboxLabel(row?: PeriodicElement): string {
+    if (!row) {
+      return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
+    }
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
+  }
+  
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  //End New Code
 
   ngOnInit() {
 
@@ -353,10 +405,10 @@ export class HeatmapComponent implements OnInit {
         }
         // console.log(insidelist)
         final_row_Event_cell_list[row] = [input_list_score[row].Event,insidelist]
-        newlist[row] = {id : row, name : final_row_Event_cell_list[row][0]} // final_row_Event_cell_list[row][0] is event name 
+        //newlist[row] = {id : row, name : final_row_Event_cell_list[row][0]} // final_row_Event_cell_list[row][0] is event name 
         // console.log(final_row_Event_cell_list[row][0])
       }
-      this.selections = newlist
+      //this.selections = newlist
       this.ScoreList = final_row_Event_cell_list
     //   console.log(this.ScoreList)
       this.alllist = this.ScoreList
@@ -373,22 +425,8 @@ export class HeatmapComponent implements OnInit {
     })
       
     })
-        //new code here
-        this.filteredOptions = this.myControl.valueChanges
-        .pipe(
-          startWith(''),
-          map(value => this._filter(value))
-        );
-  
-      //ends here
+ 
   }
 
-  //Added function (New code)
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-
-    return this.selections.filter(option => option.toLowerCase().includes(filterValue));
-  }
-  //End new code
 
 }

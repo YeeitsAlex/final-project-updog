@@ -16,39 +16,176 @@
     </mat-form-field>
 </div> -->
 
-<div class="newC" >
+<!-- <div class="newC" >
         <mat-form-field>
             <mat-label>Select a Run</mat-label>
             <mat-select disableRipple  [(ngModel)]="runchoiceNamme" > 
                     <mat-option *ngFor="let option of selections "  [value]="option.name">{{option.name}}</mat-option>
             </mat-select>
         </mat-form-field>
-</div>
-<div class="newC">
-        <div class="userInput">
-            <button mat-raised-button class = "returnbtnn" color = "primary" routerLink="/bloop">Return to previous page</button>
-        </div>
-        <button mat-raised-button class = "reportbtnn" color = "primary" routerLink="/">Generate Report</button>
-</div>
+</div> -->
 
-
-<!-- <div class="exContain">
-    <mat-accordion>
+<div class="spacer">
+<mat-accordion>
         <mat-expansion-panel>
             <mat-expansion-panel-header>
                 <mat-panel-title>
-                    Select One or More Outcomes
+                    Select One or More Events
                 </mat-panel-title>
             </mat-expansion-panel-header>
-                <mat-selection-list #Outcomes>
-                    <mat-list-option checkboxPosition="before" value="bananas">Outcome 1</mat-list-option>
-                    <mat-list-option checkboxPosition="before" value="oranges">Outcome 2 </mat-list-option>
-                    <mat-list-option checkboxPosition="before" value="apples">Outcome 3</mat-list-option>
-                    <mat-list-option checkboxPosition="before" value="strawberries">Outcome 4 </mat-list-option>
-                </mat-selection-list>
+            <mat-form-field>
+                    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Events">
+              </mat-form-field>
+                    
+              <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+                
+                    <ng-container matColumnDef="select">
+                      <th mat-header-cell *matHeaderCellDef>
+                        <mat-checkbox (change)="$event ? masterToggle() : null"
+                                      [checked]="selection.hasValue() && isAllSelected()"
+                                      [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                      [aria-label]="checkboxLabel()">
+                        </mat-checkbox>
+                      </th>
+                      <td mat-cell *matCellDef="let row">
+                        <mat-checkbox (click)="$event.stopPropagation()"
+                                      (change)="$event ? selection.toggle(row) : null"
+                                      [checked]="selection.isSelected(row)"
+                                      [aria-label]="checkboxLabel(row)">
+                        </mat-checkbox>
+                      </td>
+                    </ng-container>
+                  
+                  
+                    <ng-container matColumnDef="position">
+                      <th mat-header-cell *matHeaderCellDef> No. </th>
+                      <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                    </ng-container>
+                  
+                    
+                    <ng-container matColumnDef="name">
+                      <th mat-header-cell *matHeaderCellDef> Name </th>
+                      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                    </ng-container>
+                  
+                    
+                    <ng-container matColumnDef="weight">
+                      <th mat-header-cell *matHeaderCellDef> Weight </th>
+                      <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+                    </ng-container>
+                  
+                    
+                    <ng-container matColumnDef="symbol">
+                      <th mat-header-cell *matHeaderCellDef> Symbol </th>
+                      <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+                    </ng-container>
+                  
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+                        (click)="selection.toggle(row)">
+                    </tr>
+                    
+                  </table>
+                  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
         </mat-expansion-panel>
-    </mat-accordion>
+</mat-accordion>
+</div>
+
+
+
+<!-- <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Select Events">
+</mat-form-field>
+      
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      
+        
+        <ng-container matColumnDef="position">
+          <th mat-header-cell *matHeaderCellDef> No. </th>
+          <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+        </ng-container>
+      
+        
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+      
+        
+        <ng-container matColumnDef="weight">
+          <th mat-header-cell *matHeaderCellDef> Weight </th>
+          <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+        </ng-container>
+      
+        
+        <ng-container matColumnDef="symbol">
+          <th mat-header-cell *matHeaderCellDef> Symbol </th>
+          <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table> -->
+
+
+<!-- <div class="newC" >
+        <mat-form-field>
+            <mat-label>Select a Run</mat-label>
+            <mat-select disableRipple  [(ngModel)]="runchoiceNamme" > 
+                    <mat-option *ngFor="let option of selections "  [value]="option.name">{{option.name}}</mat-option>
+            </mat-select>
+        </mat-form-field>
 </div> -->
+
+<div class="newC">
+    <button mat-raised-button class = "returnbtnn" color = "primary" routerLink="/bloop">Return to previous page</button>
+    <button mat-raised-button class = "reportbtnn" color = "primary" routerLink="/">Generate Report</button>
+</div>
+
+
+<!-- <mat-accordion>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Select One or More Outcomes
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-form-field>
+                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Select Events">
+          </mat-form-field>
+                
+          <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                
+                  
+                  <ng-container matColumnDef="position">
+                    <th mat-header-cell *matHeaderCellDef> No. </th>
+                    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                  </ng-container>
+                
+                  
+                  <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef> Name </th>
+                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                  </ng-container>
+                
+                  
+                  <ng-container matColumnDef="weight">
+                    <th mat-header-cell *matHeaderCellDef> Weight </th>
+                    <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+                  </ng-container>
+                
+                  
+                  <ng-container matColumnDef="symbol">
+                    <th mat-header-cell *matHeaderCellDef> Symbol </th>
+                    <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+                  </ng-container>
+                
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+    </mat-expansion-panel>
+</mat-accordion> -->
 <!-- </div> -->
 
 
@@ -77,7 +214,6 @@
         <mat-option [style.display]="'none'"></mat-option>
     </mat-autocomplete>
 </mat-form-field> -->
-
 
 
 
